@@ -1,0 +1,27 @@
+{
+  "name": "check-in-solid-app",
+  "version": "2.0.0",
+  "description": "Gym pass style app.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "start": "node build/server.js",
+    "build": "tsup src --out-dir build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "18.15.5",
+    "prisma": "4.11.0",
+    "tsup": "6.7.0",
+    "tsx": "3.12.6",
+    "typescript": "5.0.2"
+  },
+  "dependencies": {
+    "@prisma/client": "4.11.0",
+    "dotenv": "16.0.3",
+    "fastify": "4.15.0",
+    "zod": "3.21.4"
+  }
+}
