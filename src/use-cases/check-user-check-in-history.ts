@@ -6,26 +6,20 @@ import { MaxDistanceError } from "./errors/max-distance-error";
 import { MaxNumberOfCheckInsError } from "./errors/max-number-of-check-ins-error";
 import { ResourceNotFoundError } from "./errors/resource-not-found";
 
-interface CheckInUseCaseRequest {
+interface FetchUserCheckInUseCaseRequest {
     userId: string;
-    gymId: string;
-    userLatitude: number;
-    userLongitude: number;
 }
 
-interface CheckInUseCaseResponse {
-    checkIn: CheckIn
+interface FetchUserCheckInUseCaseResponse {
+    checkIns: CheckIn[]
 }
 
-export class CheckInUseCase {
-    constructor(
-        private checkInsRepository: CheckInsRepository,
-        private gymsRepository: GymsRepository
-    ) { }
+export class FetchUserCheckInUseCase {
+    constructor(private checkInsRepository: CheckInsRepository) { }
 
-    async execute({ gymId, userId, userLatitude, userLongitude }: CheckInUseCaseRequest): Promise<CheckInUseCaseResponse> {
+    async execute({ userId }: FetchUserCheckInUseCaseRequest): Promise<FetchUserCheckInUseCaseResponse> {
 
-        const gym = await this.gymsRepository.findById(gymId)
+        const gym = await this.checkInsRepository.findById(gymId)
 
         if (!gym) {
             throw new ResourceNotFoundError()
